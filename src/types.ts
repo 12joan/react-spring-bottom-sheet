@@ -56,6 +56,11 @@ export type Props = {
   sibling?: React.ReactNode
 
   /**
+   * Wrap the children of the overlay div in a custom wrapper.
+   */
+  renderAbove?: (children: React.ReactNode) => React.ReactNode
+
+  /**
    * Start a transition from closed to open, open to closed, or snap to snap.
    * Return a promise or async to delay the start of the transition, just remember it can be cancelled.
    */

@@ -50,6 +50,7 @@ export const BottomSheet = React.forwardRef<
   {
     children,
     sibling,
+    renderAbove = (children) => children,
     className,
     footer,
     header,
@@ -661,20 +662,24 @@ export const BottomSheet = React.forwardRef<
           }
         }}
       >
-        {header !== false && (
-          <div key="header" data-rsbs-header ref={headerRef} {...bind()}>
-            {header}
-          </div>
-        )}
-        <div key="scroll" data-rsbs-scroll ref={scrollRef} {...(expandOnContentDrag ? bind({ isContentDragging: true }) : {})}>
-          <div data-rsbs-content ref={contentRef}>
-            {children}
-          </div>
-        </div>
-        {footer && (
-          <div key="footer" ref={footerRef} data-rsbs-footer {...bind()}>
-            {footer}
-          </div>
+        {renderAbove(
+          <>
+            {header !== false && (
+              <div key="header" data-rsbs-header ref={headerRef} {...bind()}>
+                {header}
+              </div>
+            )}
+            <div key="scroll" data-rsbs-scroll ref={scrollRef} {...(expandOnContentDrag ? bind({ isContentDragging: true }) : {})}>
+              <div data-rsbs-content ref={contentRef}>
+                {children}
+              </div>
+            </div>
+            {footer && (
+              <div key="footer" ref={footerRef} data-rsbs-footer {...bind()}>
+                {footer}
+              </div>
+            )}
+          </>
         )}
       </div>
     </animated.div>
